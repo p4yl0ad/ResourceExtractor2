@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AssemblyTitle>ResourceExtractor</AssemblyTitle>
+    <Company>ruilopes.com</Company>
+    <Product>ResourceExtractor</Product>
+    <Copyright>Copyright © ruilopes.com 2018</Copyright>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PeNet" Version="2.9.9" />
+    <PackageReference Include="Vestris.ResourceLib" Version="2.1.0" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ResourceExtractor": {
+      "commandName": "Project",
+      "commandLineArgs": "finddrivers C:\\Users\\p4\\Desktop\\OK\\OUTDIR"
+    }
+  }
+}
