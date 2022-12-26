@@ -35,7 +35,7 @@ To extract a specific resource into a file use, e.g.:
 
 To dump all 
 
-
+```powershell
 /*
 $a=@(gci . -recurse -force -include "*.exe"| select fullname)
 Write-host "[+]" $a.Count "Files"
@@ -53,7 +53,7 @@ ForEach ($execpath in $a)
 	}
 }
 */
-
+```
 
 using:
 - Vestris.ResourceLib (https://github.com/resourcelib/resourcelib) 
