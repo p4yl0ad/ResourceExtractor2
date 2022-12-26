@@ -1,4 +1,7 @@
 ﻿Quick POC for dumping bundled drivers in RSRC section. Very quickly put together.
+ResourceExtractor base project (Copyright © ruilopes.com 2018) https://github.com/rgl/ResourceExtractor
+Was missing some functionality so I added to it.
+
 
 This lists and extract the resources embedded inside an PE file (`.exe`, `.dll`, `.sys`).
 
@@ -14,7 +17,6 @@ General usage:
 	ResourceExtractor finddrivers <directory to recurse>
 
 
-
 To list the resources use, e.g.:
 
 	C:\TOOLING\ResourceExtractor.exe  list accesschk.exe
@@ -26,10 +28,12 @@ To list the resources use, e.g.:
 The first column is the resource id and the second the resource size.
 
 
-
 To extract a specific resource into a file use, e.g.:
 
 	C:\TOOLING\ResourceExtractor.exe extract accesschk.exe BINRES/101/1033 binres_101_1033
+
+
+To dump all 
 
 
 /*
@@ -51,5 +55,6 @@ ForEach ($execpath in $a)
 */
 
 
-
-using Vestris.ResourceLib and PeNet
+using:
+- Vestris.ResourceLib (https://github.com/resourcelib/resourcelib) 
+- PeNet (https://github.com/secana/PeNet)

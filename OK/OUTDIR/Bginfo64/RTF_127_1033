@@ -1,0 +1,174 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033\deflangfe1042{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\fnil\fprq2\fcharset134 SimSun;}{\f3\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}}
+{\*\generator Riched20 10.0.15063}{\*\mmathPr\mnaryLim0\mdispDef1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\keepn\nowidctlpar\s1\sa120\tx2160\cf1\b\f0\fs40 BGInfo\fs28  - Background Info Configuration\fs40\tab\par
+
+\pard\keepn\nowidctlpar\s1\tx2160\b0\fs20 Copyright \'a9 2000-2017 Bryce Cogswell\par
+
+\pard\keepn\nowidctlpar\s1\sa240\tx2160 {\lang255{\field{\*\fldinst{HYPERLINK www.sysinternals.com }}{\fldrslt{www.sysinternals.com\ul0\cf0}}}}\f0\fs24\lang255\par
+
+\pard\nowidctlpar\cf0\fs20\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\fs24 Introduction \par
+
+\pard\nowidctlpar\sa240\cf0\b0\fs20 How many times have you walked up to a system in your office and needed to click through several diagnostic windows to remind yourself of important aspects of its configuration, such as its name, IP address, or operating system version? If you manage multiple computers you probably need \i BGInfo\i0 . It automatically displays relevant information about a Windows computer on the desktop's background, such as the computer name, IP address, service pack version, and more. You can edit any field as well as the font and background colors, and can place it in your startup folder so that it runs every boot, or even configure it to display as the background for the logon screen. \par
+Because \i BGInfo\i0  simply writes a new desktop bitmap and exits you don't have to worry about it consuming system resources or interfering with other applications.\par
+\i BGInfo \i0 works on Windows \lang1033 XP SP3\lang255  and higher. \par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b Installation and Use\par
+
+\pard\nowidctlpar\sa240\cf0\b0\i BGInfo \i0 does not require any special installation. To run it simply execute \f1 BGINFO.EXE\f0  from a convenient location. \par
+To uninstall, delete \f1 BGINFO.EXE\f0  and reset your system\rquote s wallpaper using Windows\rquote  Desktop Properties dialog.\par
+By placing \i BGInfo\i0  in your \b Startup\b0  folder you can ensure that the system information being displayed is up to date each time you boot. Once you've settled on the information to be displayed use the command line option /timer:0 to update the display without showing the dialog box.\par
+You can use the \b /popup \b0 or \b /taskbar \b0 options if you prefer to see the information without it updating your system\rquote s wallpaper.\par
+You can also use the Windows Scheduler to run \i BGInfo\i0  on a regular basis to ensure long-running systems are kept up to date. \par
+By default \i BGInfo \i0 stores configuration information on a per-user basis in the registry (this is called the \i Default configuration\i0 ). Alternately you can store it in a configuration file, allowing it to be shared among all users of a system or across multiple systems.\par
+
+\pard\nowidctlpar\sb100\sa240\i Security Warning\i0 : Ensure your configuration files are protected using appropriate file permissions. If another user has write access to your configuration file they could add scripts to the file that would automatically run under your account the next time you run \i BGInfo\i0 .\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\f2\fs24\lang1033\par
+\f0\lang255 Using BgInfo\par
+
+\pard\nowidctlpar\sa240\cf0\b0\fs20 When you run \i BGInfo\i0  it shows you the appearance and content of its default desktop background. If left untouched it will automatically apply these settings and exit after its 10 second count-down timer expires. \par
+Selecting any button or menu item will disable the timer, allowing you to customize the layout and content of the background information.\par
+If you want \i BGInfo \i0 to edit or use a configuration stored in a file (instead of the default configuration which is stored in the registry) specify the name of the file on the command line:\par
+
+\pard\nowidctlpar\li360\qj\f1 BGInfo MyConfig.bgi\par
+\fs24\lang1033\par
+\par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b\f0\fs20\lang255 Appearance Buttons\par
+
+\pard\nowidctlpar\sa240\cf0 Fields: \b0 Selects what information appears on the desktop, and the order in which it is displayed. For networking fields (NIC, IP, MAC, etc.) a separate entry is created for each network card on the system. Press the \b Add\b0  button to add the currently selected fields to the text area. Use the \b Custom\b0  button to add special information you define yourself (see \i Custom Fields \i0 below). \par
+\b Background: \b0 Selects the color and/or wallpaper to use for the background. If you select the \b Copy\b0  \b user\rquote s wallpaper settings\b0  option then \i BGInfo\i0  will use whatever information is currently selected by the logged on user. This option allows end users to personalize their desktop while still displaying the \i BGInfo\i0  information.\par
+\b Position: \b0 Selects the location on the screen at which to place the text. If some items are very long (for example some network card names) you can use the \b Limit Lines to\b0  item to force them to wrap. The \b Compensate for Taskbar position \b0 checkbox adjusts the position of the text to ensure that it is not covered by the Taskbar. The \b Multiple Monitor Configuration \b0 button allows you to specify how multiple monitors attached to a single console should be handled.\par
+\b Desktops: \b0 Selects which desktops are updated when the configuration is applied. By default only the \b User Desktop \b0 wallpaper is changed. Enabling the \b Logon Desktop for Console users \b0 option specifies that the wallpaper should be displayed on the logon desktop that is presented before anyone has logged onto the system. On Windows 95/98/ME systems the same desktop is used for users and the login screen, so this option has no effect. Enabling the \b Logon Desktop for Terminal Services users \b0 option specifies that the wallpaper should be displayed on the Terminal Services login screen. This option is useful only on servers running Terminal Services.\par
+\b Preview: \b0 Displays the background as it will appear when applied to your system.\par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b Configuration Menu Items\par
+
+\pard\nowidctlpar\sa240\cf0\b0 These are options that control how the bitmap is produced, where it is located and how to import/export settings.\par
+\b File | Open: \b0 Opens a \i BGInfo\i0  configuration file. \par
+\b File | Save As: \b0 Saves a copy of the current \i BGInfo\i0  configuration to a new file. Once created, you can have \i BGInfo\i0  use the file later by simply specifying it on the command line, or by using \b File|Open \b0 menu option. \par
+\b File | Reset Default Settings: \b0 Removes all configuration information and resets \i BGInfo\i0  to its default (install-time) state. Use this if you can't determine how to undo a change, or if \i BGInfo\i0  becomes confused about the current state of the bitmap.\par
+\b File | Database: \b0 Specifies a .XLS, .MDB or .TXT file or a connection string to an SQL database that \i BGInfo\i0  should use to store the information it generates. Use this to collect a history of one or more systems on your network.  You must ensure that all systems that access the file have the same version of MDAC and JET database support installed. It is recommended you use at least MDAC 2.5 and JET 4.0.  If specifying an XLS file the file must already exist.\par
+If you prefer to have \i BGInfo \i0 update the database without modifying the user\rquote s wallpaper you can unselect all desktops in the \b Desktops \b0 dialog; \i BGInfo \i0 will still update the database.\par
+\i BGInfo \i0 supports connections to a MySQL + MyODBC database. Use a connection string like:\par
+
+\pard\nowidctlpar\li360\qj\f1 Driver=\{MySQL ODBC 3.51 Driver\};Server=DBSERVER;Database=TEST;Uid=root\fs24\lang1033\par
+\par
+
+\pard\nowidctlpar\sa240\b\f0\fs20\lang255 Bitmap | 256 Colors: \b0 Limits the bitmap to 256 colors. This option produces a smaller bitmap.\par
+\b Bitmap | High Color/True Color: \b0 Creates a 16-bit or 24-bit color bitmap.\par
+\b Bitmap | Match Display: \b0 Creates a bitmap with color depth matching that of the display. \par
+Because the bitmap generated by \i BGInfo\i0  is not updated when a user changes the display's color depth you may see unexpected results (especially dithering of the text and background) with some combinations of bitmap and display depth.\par
+\b Bitmap | Location: \b0 Specifies the location to place the output bitmap file. This location must be writeable by the account under which \i BGInfo \i0 is run. On Terminal Services servers the bitmap should be placed in a location that is unique to each user.\par
+\b Edit | Insert Image: \b0 Allows you to insert a bitmap image into the output. Because \i BGInfo\i0 's configuration information is stored in the registry and Windows limits the size of registry values you may encounter errors when inserting larger images. On Windows 9x/Me systems the limit is 16K, while on NT/2000/XP systems the limit is 64K.\par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b Command Line Options\par
+
+\pard\nowidctlpar\sa240\cf0 <path> \b0 Specifies the name of a configuration file to use for the current session. Changes to the configuration are automatically saved back to the file when \b OK \b0 or \b Apply \b0 is pressed. If this parameter is not present \i BGInfo \i0 uses the default configuration information which is stored in the registry under the current user (\ldblquote HKEY_CURRENT_USER\\Software\\Winternals\\BGInfo\rdblquote ).\par
+\b /timer:<seconds> \b0 Specifies the timeout value for the countdown timer, in seconds. Specifying zero will update the display without displaying the configuration dialog. Specifying 300 seconds or longer disables the timer altogether.\par
+\b /popup \b0 Causes \i BGInfo \i0 to create a popup window containing the configured information without updating the desktop. The information is formatted exactly as it would if displayed on the desktop, but resides in a fitted window instead. When using this option the history database is not updated.\par
+\b /taskbar \b0 Causes \i BGInfo \i0 to place an icon in the taskbar\rquote s status area without updating the desktop. Clicking the icon causes the configured information to appear in a popup window. When using this option the history database is not updated.\par
+\b /silent \b0 Prevents \i BGInfo \i0 from displaying an error dialog if an error occurs.\par
+\b /all \b0 Specifies that \i BGInfo \i0 should change the wallpaper for any and all users currently logged in to the system. This option is useful within a Terminal Services environment, or when \i BGInfo \i0 is scheduled to run periodically on a system used by more than one person (see \i Using a Schedule\i0  below). This option requires Administrator privilege on the system.\par
+\b /log:<path> \b0 Causes \i BGInfo \i0 to write errors to the specified log file instead of generating a warning dialog box. This is useful for tracking down errors that occur when \i BGInfo \i0 is run under the scheduler.\par
+\b /rtf:<path> \b0 Causes \i BGInfo \i0 to write its output text to an RTF file. All formatting information and colors are included.\par
+\b /i<path> \b0 [Deprecated] Imports the information in the given configuration file into the Default Configuration. If the file does not exist an error dialog is presented.\par
+\b /iq<path> \b0 [Deprecated] Imports the information in the given configuration file into the Default Configuration. No warning is provided if the file does not exist\fs18 .\fs20\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\fs24 Custom Fields\par
+
+\pard\nowidctlpar\sa240\cf0\b0\fs20 If \i BGInfo \i0 does not contain information you would like to display you can create a user defined field that contains whatever information you want. You can define one or more custom fields that display:\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent1800{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa240 An environment variable;\par
+{\pntext\f3\'B7\tab}A registry value;\par
+{\pntext\f3\'B7\tab}The contents of a text file;\par
+{\pntext\f3\'B7\tab}The version information contained in a DLL or executable file;\par
+{\pntext\f3\'B7\tab}The time stamp (last modified date) of a file;\par
+{\pntext\f3\'B7\tab}The output of a VB Script;\par
+{\pntext\f3\'B7\tab}The result of a Windows Management Instrumentation (WMI) query.\par
+
+\pard\nowidctlpar\sa240\qj When you define a custom field the value of the field is evaluated every time \i BGInfo \i0 runs, regardless of whether you are displaying the field on your wallpaper. For example, if you define a field that references a network file, or a script that takes a long time to run, then there will still be a short pause while \i BGInfo \i0 evaluates that field, even if you choose not to display it.\par
+WMI provides an easy way to access a wide variety of information available on Windows Me or Windows 2000 and later (WMI is available as a download for earlier versions of Windows).  Examples of WMI queries are:\par
+
+\pard\nowidctlpar\li360\qj\tx4320\f1 Hard Drive Model:\tab SELECT Model FROM Win32_DiskDrive\fs24\lang1033\par
+\fs20\lang255 Motherboard Manufacturer:\tab SELECT Manufacturer FROM Win32_BaseBoard\fs24\lang1033\par
+\fs20\lang255 Video Adapter:\tab SELECT Name FROM Win32_VideoController\par
+
+\pard\nowidctlpar\li360\qj\fs24\lang1033\par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b\f0\fs20\lang255 VB Script Support\par
+
+\pard\nowidctlpar\sa240\qj\cf0\b0 Use a VB Script file when you want to display information drawn from arbitrary sources, or to ensure information is formatted exactly the way you want it. You must create a separate VB Script file for each field you define.\par
+Use the \b Echo\b0  function to write the information you want \i BGInfo\i0  to display. Each call to \b Echo\b0  will create a separate line of output. For example, the following VBS will display a list of network drives connected to the system:\par
+
+\pard\nowidctlpar\li360\qj\f1 Set WshNetwork = CreateObject("WScript.Network")\par
+Set oDrives = WshNetwork.EnumNetworkDrives\par
+For i = 0 to oDrives.Count - 1 Step 2\par
+\tab Echo oDrives.Item(i) & " = " & oDrives.Item(i+1)\fs24\lang1033\par
+\fs20\lang255 Next\par
+\fs24\lang1033\par
+
+\pard\nowidctlpar\sa240\f0\fs20\lang255 Use the \b Field\b0  function to retrieve the value of a predefined \i BGInfo \i0 field. For example, the \ldblquote System Type\rdblquote  field contains a set of comma separated items that describe the features of the system being used (\i e.g. \i0\ldblquote Domain Controller, Primary, Terminal Server\rdblquote ), but perhaps you prefer for each of these items to be displayed on its own line. You can write a script that replaces the commas with the vertical tab character, which forces each item to appear on its own line:\par
+
+\pard\nowidctlpar\li360\qj\f1 temp = Field("System Type")\par
+temp = Replace( temp, ", ", CHR(11), 1, -1, 1 )\par
+Echo temp\par
+
+\pard\nowidctlpar\qj\f0\fs24\lang1033\par
+
+\pard\nowidctlpar\sa240\fs20\lang255 All predefined fields are evaluated before user-defined fields, so it is always safe to reference a predefined field from within your script. However, the order in which user-defined fields are evaluated is arbitrary, so you cannot reliably refer to a user-defined field within a script.\par
+
+\pard\nowidctlpar\sb100\sa240\i Security Warning\i0 : Ensure your VB Script files are protected using appropriate file permissions. If another user has write access to your VB Script files they could modify the scripts to perform actions under your account the next time you run \i BGInfo\i0 .\par
+
+\pard\keepn\nowidctlpar\s2\sa240\cf1\b Accessing WMI from a script\par
+
+\pard\nowidctlpar\sa240\cf0\b0 WMI (Windows Management Instrumentation) is a powerful mechanism that allows you to gather and manipulate information about virtually any aspect of your system, including software, hardware, services and BIOS settings.\par
+On systems that support WMI you can access WMI objects using VB scripting. For example, to display the BIOS version of a system use:\par
+
+\pard\nowidctlpar\li360\f1 winmgt = "winmgmts:\{impersonationLevel=impersonate\}!//"\par
+Set SNSet = GetObject(winmgt).InstancesOf("Win32_BIOS")\fs24\lang1033\par
+
+\pard\nowidctlpar\li360\qj\fs20\lang255 for each SN in SNSet\par
+\tab Echo SN.Version\fs24\lang1033\par
+\fs20\lang255 Next\par
+
+\pard\nowidctlpar\sb100\sa240\f0\fs24\lang1033\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\lang255 Using a Schedule\par
+
+\pard\nowidctlpar\sa240\cf0\b0\i\fs20 BGInfo \i0 can be run under the Windows Task Scheduler in order to automatically update a system\rquote s desktop on a periodic basis. Add \i BGInfo \i0 to the scheduler just as you would any other application, along with any command line options desired. Set the Account field to be the name of the user whose desktop should be updated. \par
+When set to update the \b User Desktop \b0\i BGInfo \i0 will update only the wallpaper for the account specified as the \ldblquote Run as\rdblquote  account in the Task Scheduler. However, if you add the command line option \b /all \b0 and specify an account having Administrator rights then the change will be made to any and all interactive sessions on the system.\par
+Finally, you can create a schedule using the Task Scheduler\rquote s special \ldblquote At System Startup\rdblquote  scheduling option which will update the Console logon wallpaper or Terminal Services logon wallpaper at boot time. Use the \b Desktops \b0 button to specify updating the \b Logon Desktop for Console users \b0 and/or the \b Logon Desktop for Terminal Services users \b0 in this case.\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\fs24 Security Issues\par
+
+\pard\nowidctlpar\sa240\cf0\b0\fs20 As with any application that supports scripting you must ensure that the configuration data that \i BGInfo \i0 uses is properly protected from untrusted users. If untrusted users are granted write access to \i BGInfo\i0\rquote s configuration data they could alter it to run arbitrary applications under your account. Fortunately, it is easy to avoid this possibility. \par
+There are three places where security is an issue:\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent1800{\pntxtb\'B7}}\nowidctlpar\fi-360\li720\sa240 If reading the Default Configuration (stored in the registry at HKEY_CURRENT_USER\\Software\\Winternals\\BGInfo) then the registry key needs to have read-only permissions (or less) set for untrusted users. Since the registry key is part of HKEY_LOCAL_USER this should be handled by Windows automatically.\par
+{\pntext\f3\'B7\tab}If reading the configuration data from a .BGI file then the file needs to have read-only permissions (or less) set for untrusted users.\par
+{\pntext\f3\'B7\tab}If the configuration data contains a reference to a VB script, then the actual script file needs to have read-only permissions (or less) for untrusted users.\par
+
+\pard\nowidctlpar\sa240 In summary, you must protect the configuration data to make sure nobody adds an untrusted script, and then ensure that any scripts you add yourself are protected from being modified. \par
+\i Important\i0 : \i BGInfo \i0 runs every script that is included in a configuration, regardless of whether the script output is displayed on the desktop. The list of scripts run by \i BGInfo\i0  is the list provided by the \b Custom \b0 button.\par
+
+\pard\keepn\nowidctlpar\s1\sa240\cf1\b\fs24 VNC Issues\par
+
+\pard\nowidctlpar\sa240\cf0\b0\fs20 Several issues can occur when using \i BGInfo \i0 in conjunction with VNC:\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent1080{\pntxtb\'B7}}\nowidctlpar\fi-360\li360\sa240 On connect, VNC does not display the \i BGInfo \i0 wallpaper.\par
+
+\pard\nowidctlpar\sa240 By default most configurations of VNC remove any active wallpaper on connect to the host. To fix this add a registry entry to VNC to disable the "remove wallpaper" function:\par
+
+\pard\nowidctlpar\li360\sa240 [HKEY_LOCAL_MACHINE\\SOFTWARE\\ORL\\WinVNC3\\Default]\par
+"RemoveWallpaper"=dword:00000000\par
+
+\pard{\pntext\f3\'B7\tab}{\*\pn\pnlvlblt\pnf3\pnindent1080{\pntxtb\'B7}}\nowidctlpar\fi-360\li360\sa240 On disconnect, VNC resets the wallpaper.\par
+
+\pard\nowidctlpar\sa240 When disconnecting VNC resets the active wallpaper to the wallpaper specified under the .DEFAULT user profile. To fix this enable the \b Logon Desktop for Console users \b0 option in the \b Desktops \b0 dialog. This will add the \i BGInfo\i0  wallpaper to the .DEFAULT user profile \par
+}
+ 
