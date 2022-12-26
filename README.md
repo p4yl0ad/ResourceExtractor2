@@ -6,7 +6,7 @@ Was missing some functionality so I added to it.
 This lists and extract the resources embedded inside an PE file (`.exe`, `.dll`, `.sys`).
 
 General usage:
-
+```
 	C:\TOOLING\ResourceExtractor.exe
 
 	USAGE:
@@ -15,29 +15,31 @@ General usage:
 	ResourceExtractor extract <executable> <id> <extract to file name>
 	ResourceExtractor dump <executable> <output directory>
 	ResourceExtractor finddrivers <directory to recurse>
-
+```
 
 To list the resources use, e.g.:
-
+```
 	C:\TOOLING\ResourceExtractor.exe  list accesschk.exe
 	BINRES/RCACCESSCHK64/1033       810416
 	BINRES/101/1033 16264
 	RT_VERSION/1/1033       916
 	RT_MANIFEST/1/1033      891
-
+```
 The first column is the resource id and the second the resource size.
 
 
 To extract a specific resource into a file use, e.g.:
-
+```
 	C:\TOOLING\ResourceExtractor.exe extract accesschk.exe BINRES/101/1033 binres_101_1033
-
+```
 
 To dump all 
-
+```
+```
 
 
 To find and list imports of PE's:
+```
 	C:\Users\p4\Downloads\ResourceExtractor-master>C:\Users\p4\Downloads\ResourceExtractor-master\bin\Debug\net461\ResourceExtractor.exe finddrivers OK\
                 [+] Found PE file OK\accesschk.exe
 	NETAPI32.dll - NetShareEnum - 222 - 708
@@ -79,8 +81,9 @@ To find and list imports of PE's:
 	ntoskrnl.exe - RtlCompareUnicodeString - 2049 - 132
 	ntoskrnl.exe - RtlCopyUnicodeString - 2070 - 136
 	ntoskrnl.exe - RtlAppendUnicodeStringToString - 2018 - 140
+```
 
-
+Misc early dev powershell loop
 ```powershell
 /*
 $a=@(gci . -recurse -force -include "*.exe"| select fullname)
