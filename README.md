@@ -1,30 +1,55 @@
-﻿This lists and extract the resources embedded inside an executable file (`.exe`, `.dll`, etc.).
+﻿Quick POC for dumping bundled drivers in RSRC section. Very quickly put together.
+
+This lists and extract the resources embedded inside an PE file (`.exe`, `.dll`, `.sys`).
+
+General usage:
+
+	C:\TOOLING\ResourceExtractor.exe
+
+	USAGE:
+
+	ResourceExtractor list <executable>
+	ResourceExtractor extract <executable> <id> <extract to file name>
+	ResourceExtractor dump <executable> <output directory>
+	ResourceExtractor finddrivers <directory to recurse>
+
 
 
 To list the resources use, e.g.:
 
-	ResourceExtractor list Procmon.exe
-
-Which will show something like:
-
-	BINRES/RCDRIVERNT/1033  73480
-	BINRES/1308/1033        1186440
-	RT_CURSOR/23/1033       308
-	RT_CURSOR/24/1033       308
-	RT_BITMAP/400/1033      2920
-	RT_ICON/1/1033  3752
+	C:\TOOLING\ResourceExtractor.exe  list accesschk.exe
+	BINRES/RCACCESSCHK64/1033       810416
+	BINRES/101/1033 16264
+	RT_VERSION/1/1033       916
+	RT_MANIFEST/1/1033      891
 
 The first column is the resource id and the second the resource size.
 
 
+
 To extract a specific resource into a file use, e.g.:
 
-	ResourceExtractor extract Procmon.exe BINRES/1308/1033 ProcmonAmd64.exe
+	C:\TOOLING\ResourceExtractor.exe extract accesschk.exe BINRES/101/1033 binres_101_1033
 
 
-The single executable `ResourceExtractor.exe` was created using [LibZ](https://github.com/MiloszKrajewski/LibZ):
+/*
+$a=@(gci . -recurse -force -include "*.exe"| select fullname)
+Write-host "[+]" $a.Count "Files"
 
-	libz inject-dll --assembly ResourceExtractor.exe --include *.dll --move
+ForEach ($execpath in $a)
+{
+	try 
+	{
+		Write-host "[+] Listing resources of" $execpath.Fullname
+		C:\Users\p4\Downloads\ResourceExtractor-master\bin\Release\net461\ResourceExtractor.exe dump $execpath.Fullname OUTDIR
+	} 
+	catch 
+	{
+		Write-host "[-] Failed for" $execpath.Fullname
+	}
+}
+*/
 
 
-This uses the [Vestris.ResourceLib C# File Resource Management Library](https://github.com/resourcelib/resourcelib) library.
+
+using Vestris.ResourceLib and PeNet

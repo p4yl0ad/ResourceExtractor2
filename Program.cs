@@ -2,24 +2,6 @@
 using System.IO;
 using Vestris.ResourceLib;
 
-/*
-$a=@(gci . -recurse -force -include "*.exe"| select fullname)
-Write-host "[+]" $a.Count "Files"
-
-ForEach ($execpath in $a)
-{
-	try 
-	{
-		Write-host "[+] Listing resources of" $execpath.Fullname
-		C:\Users\p4\Downloads\ResourceExtractor-master\bin\Release\net461\ResourceExtractor.exe dump $execpath.Fullname OUTDIR
-	} 
-	catch 
-	{
-		Write-host "[-] Failed for" $execpath.Fullname
-	}
-}
-*/
-
 namespace ResourceExtractor
 {
     class Program
@@ -117,8 +99,6 @@ namespace ResourceExtractor
         
         private static void FindDrivers(string path)
         {
-            //Console.WriteLine("Entry");
-            //Console.WriteLine($"Entering path {path}");
             string[] files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories);
 
             foreach (string file in files)
@@ -130,7 +110,6 @@ namespace ResourceExtractor
                 }
                 else
                 {
-                    //Console.WriteLine($"\t[+] Found file {file}");
                     byte[] buffer = new byte[2];
                     using (FileStream fs = new FileStream(file, FileMode.Open, FileAccess.Read))
                     {
@@ -150,6 +129,10 @@ namespace ResourceExtractor
 
                                 foreach (var imp in peHeader.ImportedFunctions)
                                 {
+
+                                    // IoCreateDevice
+                                    // IoAttachDeviceToDeviceStack
+
                                     // MmMapIoSpace
                                     // MmUnmapIoSpace
                                     // ZwMapViewOfSection
@@ -200,7 +183,6 @@ namespace ResourceExtractor
             Enumerate(filename, (resourceId, resource) =>
             {
                 Console.WriteLine("{0}\t{1}", resourceId, resource.Size);
-                //Console.WriteLine("[+]", resourceId);
                 return false;
             });
         }
