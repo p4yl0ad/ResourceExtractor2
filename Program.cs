@@ -44,14 +44,13 @@ namespace ResourceExtractor
         }
 
         private static void ShowHelp()
-        {;
+        {
             Console.WriteLine("\nUSAGE: ");
             Console.WriteLine("\nResourceExtractor list <executable>");
             Console.WriteLine("ResourceExtractor extract <executable> <id> <extract to file name>");
             Console.WriteLine("ResourceExtractor dump <executable> <output directory>");
             Console.WriteLine("ResourceExtractor finddrivers <directory to recurse>\n");
         }
-
         private static void DumpAll(string filename, string hostdirname)
         {
             string sfilename = Path.GetFileNameWithoutExtension(filename);
@@ -122,14 +121,26 @@ namespace ResourceExtractor
                         }
                         else
                         {
-                            if (buffer[0] == 0x4d && buffer[1] == 0x5A)
+                            if (buffer[0] == 0x4d && buffer[1] == 0x5A) // MZ header
                             {
                                 Console.WriteLine($"\t\t[+] Found PE file {file}");
                                 var peHeader = new PeNet.PeFile(file);
+                                if (peHeader.ImportedFunctions == null)
+                                {
+                                    Console.WriteLine("[-] 0 imported functions");
+                                    continue;
+                                }
+
+                                if (peHeader.ImportedFunctions.Length == 0)
+                                // Weird case when its a PE but BINRES_RCPORTMVXD_1033
+                                {
+                                    Console.WriteLine("[-] 0 imported functions");
+                                    continue;
+                                }
 
                                 foreach (var imp in peHeader.ImportedFunctions)
                                 {
-
+                                    Console.WriteLine($"{imp.DLL} - {imp.Name} - {imp.Hint} - {imp.IATOffset}");
                                     // IoCreateDevice
                                     // IoAttachDeviceToDeviceStack
 
@@ -155,16 +166,7 @@ namespace ResourceExtractor
                                     // MmProbeAndLockPages
                                     // MmMapLockedPagesSpecifyCache
                                     // KeStackAttachProcess
-
-
-                                    Console.WriteLine($"{imp.DLL} - {imp.Name} - {imp.Hint} - {imp.IATOffset}");
                                 }
-
-                                //foreach (var exp in peHeader.ExportedFunctions)
-                                //{
-                                //    Console.WriteLine($"{exp.Name}");
-                                //}
-
                             }
                         }
                     }
@@ -205,8 +207,5 @@ namespace ResourceExtractor
                 return false;
             });
         }
-
-
-
     }
 }
